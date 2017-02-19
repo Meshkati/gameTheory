@@ -14,8 +14,4 @@ class Controller extends BaseController
     public function home() {
         return view('layouts/home');
     }
-
-    public function login() {
-         return view('layouts/login');
-    }
 }
