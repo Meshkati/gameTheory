@@ -13,4 +13,8 @@ class Record extends Model
     public function user() {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function match() {
+        return $this->belongsTo('App\Match', 'match_id');
+    }
 }

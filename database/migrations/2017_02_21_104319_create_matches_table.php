@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecordsTable extends Migration
+class CreateMatchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,12 @@ class CreateRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('records', function (Blueprint $table){
+        Schema::create('matches', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('score');
-            $table->boolean('isAvailable');
             $table->integer('game_id')->unsigned()->index()->nullable();
             $table->foreign('game_id')
                 ->references('id')
                 ->on('games');
-            $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-            $table->integer('match_id')->unsigned()->index()->nullable();
-            $table->foreign('match_id')
-                ->references('id')
-                ->on('matches');
 
             $table->timestamps();
         });
@@ -41,6 +31,6 @@ class CreateRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('matches');
     }
 }
