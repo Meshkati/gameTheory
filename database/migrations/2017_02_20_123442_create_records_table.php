@@ -17,6 +17,14 @@ class CreateRecordsTable extends Migration
             $table->increments('id');
             $table->integer('score');
             $table->boolean('isAvailable');
+            $table->integer('game_id')->unsigned()->index()->nullable();
+            $table->foreign('game_id')
+                ->references('id')
+                ->on('games');
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
 
             $table->timestamps();
         });

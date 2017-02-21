@@ -17,6 +17,7 @@ class CreateGamesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('best')->nullable();
+            $table->integer('round')->nullable();
 
             $table->timestamps();
         });
