@@ -17,10 +17,13 @@
 
     <!-- Scripts -->
     <script>
+        var csrfToken = '{{ csrf_token() }}';
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('js/jquery-3.1.0.min.js')}}"></script>
 </head>
 <body>
     <div id="app">
