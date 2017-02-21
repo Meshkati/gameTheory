@@ -16,11 +16,12 @@
                 <div class="game_container">
                     <h5>{{ $question }}</h5>
                     <div class="game_choices">
+                        <?php $i = 0 ?>
                         @foreach($choices as $choice)
-                            <input type="radio" name="choice" value="0">{{ $choice }} </br>
+                            <input type="radio" name="choice" value="{{ $i++ }}">{{ $choice }} </br>
                         @endforeach
                     </div>
-                    <button class="btn btn-primary">ثبت</button>
+                    <button class="btn btn-primary" onclick="submitChoice({{ $game->id }}, {{\Illuminate\Support\Facades\Auth::id()}})">ثبت</button>
                 </div>
             </div>
         </div>
