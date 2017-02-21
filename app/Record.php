@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Record extends Model
 {
+    protected $fillable = ['score', 'isAvailable', 'user_id'];
+
     public function game(){
         return $this->belongsTo('App\Game', 'game_id');
     }
