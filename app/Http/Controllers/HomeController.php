@@ -3,9 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Game;
 
 class HomeController extends Controller
 {
+    protected $descriptions = [
+        '1' => 'در این بازی باید فلانی را لو بدهید',
+    ];
+
+    protected $questions = [
+        '1' => 'چیکار میکنی؟ لو میدی یا نه؟'
+    ];
+
+    protected $choices = [
+        '1' => [
+            '0' => 'بله',
+            '1' => 'خیر'
+        ]
+    ];
     /**
      * Create a new controller instance.
      *
@@ -23,6 +38,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.home');
+        return view('layouts.home', [
+            'games' => Game::all()
+        ]);
+    }
+    public function showGame($game_id) {
+        return view('games.type1', [
+            'game' => Game::find($game_id),
+            'description' => $this->descriptions[$game_id],
+            'question' => $this->questions[$game_id],
+            'choices' => $this->choices[$game_id]
+        ]);
     }
 }

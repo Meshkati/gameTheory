@@ -3,6 +3,25 @@ body {
     direction: rtl !important;
 }
 
+.game_description {
+    margin-top: 50px;
+}
+
+.game_container {
+    margin-top: 100px;
+}
+
+.game_choices {
+    margin-right: 50px;
+}
+
+.game_choices input {
+    margin: 5px !important;
+}
+
+.game_container button {
+    margin: 50px;
+}
 
 @font-face {
     font-family: IRANSans;
