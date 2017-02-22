@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    <script>
+        $(document).ready(function(){
+            $('#button_icon').hide();
+        });
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-md-10 col-lg-8 col-xs-offset-0 col-sm-offset-1 col-md-offset-1 col-lg-offset-2">
@@ -21,7 +26,22 @@
                             <input type="radio" name="choice" value="{{ $i++ }}">{{ $choice }} </br>
                         @endforeach
                     </div>
-                    <button class="btn btn-primary" onclick="submitChoice({{ $game->id }}, {{\Illuminate\Support\Facades\Auth::id()}})">ثبت</button>
+                    <button id ="submit_record" class="btn btn-primary" onclick="submitChoice({{ $game->id }}, {{\Illuminate\Support\Facades\Auth::id()}})">ثبت
+                        <i id="button_icon" class="fa fa-circle-o-notch fa-spin"></i>
+                    </button>
+                </div>
+                <div class="game_response" style="display: none">
+                    <h5 id="win_or_lose"></h5>
+                    <div style="margin-top: 50px">
+                        <p>شما با کاربر</p>
+                        </br>
+                        <span id="user_name_field"></span>
+                        <br>
+                        <p>بازی کردید و او گزینه</p>
+                        <span id="enemy_chocie"></span>
+                        <br>
+                        <p>را انتخاب کرد</p>
+                    </div>
                 </div>
             </div>
         </div>

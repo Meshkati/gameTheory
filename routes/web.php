@@ -16,3 +16,4 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/games/{game_id}', 'HomeController@showGame')->where('game_id', '[0-9]+');
 Route::post('/games/{game_id}/submit','MatchController@storeRecord')->where('game_id', '[0-9]+');
+Route::post('/games/{game_id}/checkRecordStatus/{record_id}', 'MatchController@checkRecordStatus')->where('game_id', '[0-9]+');
