@@ -16,9 +16,11 @@ function waitForMatch() {
 
 function setGameStatus(response) {
     console.log(response);
-    $('.game_container').css('display', 'none')
+    $('.game_container').css('display', 'none');
     $('.game_response').css('display', 'block');
-    $('#win_or_lose').text('شدید' + response.match.wl + 'شما');
+    var stat = response.match.wl=='win'?'برنده':'بازنده';
+    var message = 'شما'+ ' ' + stat + ' ' + 'شدید';
+    $('#win_or_lose').text(message);
     $('#user_name_field').text(response.opponent.name);
     $('#enemy_chocie').text(response.match.enemy_choice);
 }

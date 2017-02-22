@@ -33,14 +33,11 @@
                 <div class="game_response" style="display: none">
                     <h5 id="win_or_lose"></h5>
                     <div style="margin-top: 50px">
-                        <p>شما با کاربر</p>
-                        </br>
-                        <span id="user_name_field"></span>
-                        <br>
-                        <p>بازی کردید و او گزینه</p>
-                        <span id="enemy_chocie"></span>
-                        <br>
-                        <p>را انتخاب کرد</p>
+                        <span>شما با کاربر </span>
+                        <span id="user_name_field" style="color: #2e6da4"></span>
+                        <span> بازی کردید و او گزینه </span>
+                        <span id="enemy_chocie" style="color: #ff6666;"></span>
+                        <span>را انتخاب کرد</span>
                     </div>
                 </div>
             </div>
