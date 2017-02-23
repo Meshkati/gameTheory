@@ -44,24 +44,31 @@ function submitChoice(gameId, userId) {
         return;
     }
     if (gameId == 2) {
-        $.ajaxSetup({
-            headers: {'X-CSRF-Token': csrfToken}
-        });
-        $.post('/games/' + gameId + '/submit', {
-            user: userId,
-            choice: $('#number_input').val(),
-        }, function (response) {
-            console.log(response);
-            if (response.status == 'match') {
-                setGameStatus(response);
-            } else if (response.status == 'record') {
-                record_id = response.record.id;
-                game_id = gameId;
-                changeToPending();
-                clickable = false;
-                waitForMatch();
-            }
-        });
+        if ($('#number_input').val() > 100 || $('#number_input').val() < 0) {
+            $('#submit_record').removeClass('btn-primary');
+            $('#submit_record').addClass('btn-danger');
+            $('#submit_record').text('عدد نا معتبر است');
+            setTimeout(location.reload.bind(location), 5000);
+        } else {
+            $.ajaxSetup({
+                headers: {'X-CSRF-Token': csrfToken}
+            });
+            $.post('/games/' + gameId + '/submit', {
+                user: userId,
+                choice: $('#number_input').val(),
+            }, function (response) {
+                console.log(response);
+                if (response.status == 'match') {
+                    setGameStatus(response);
+                } else if (response.status == 'record') {
+                    record_id = response.record.id;
+                    game_id = gameId;
+                    changeToPending();
+                    clickable = false;
+                    waitForMatch();
+                }
+            });
+        }
     } else if (gameId == 1) {
         $.ajaxSetup({
             headers: {'X-CSRF-Token': csrfToken}
