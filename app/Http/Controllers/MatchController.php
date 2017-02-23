@@ -76,7 +76,8 @@ class MatchController extends Controller
                 $res = response()->json([
                     'status' => 'done',
                     'x' => $x->score,
-                    'cx' => $cx->score
+                    'cx' => $cx->score,
+                    'user' => User::find(Record::find(132)->score)->name
                 ]);
             }
         }

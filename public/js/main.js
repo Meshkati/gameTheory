@@ -25,7 +25,7 @@ function setGameStatus(response) {
         $('.game_response').css('display', 'block');
         var message = 'عدد منتخب ' + response.x + ' است' + '';
         $('#win_or_lose').text(message);
-        $('#user_name_field').text('test');
+        $('#user_name_field').text(response.user);
         $('#enemy_chocie').text(response.cx);
     } else {
 
