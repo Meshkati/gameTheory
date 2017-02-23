@@ -14,7 +14,7 @@
                             <a href="{{ url('/games/' . $game->id ) }}">{{ $game->name }}</a>
                         </div>
                         <div class="panel-body">
-                            توضیج
+                            {{ $game->name }}
                         </div>
                     </div>
                 </div>

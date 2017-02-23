@@ -9,17 +9,20 @@ class HomeController extends Controller
 {
     protected $descriptions = [
         '1' => 'در این بازی باید فلانی را لو بدهید',
+        '2' => 'توضیح'
     ];
 
     protected $questions = [
-        '1' => 'چیکار میکنی؟ لو میدی یا نه؟'
+        '1' => 'چیکار میکنی؟ لو میدی یا نه؟',
+        '2' => 'یک عدد بین ۱ تا ۱۰۰ انتخاب کنید'
     ];
 
     protected $choices = [
         '1' => [
             '0' => 'بله',
             '1' => 'خیر'
-        ]
+        ],
+        '2' => ''
     ];
     /**
      * Create a new controller instance.
