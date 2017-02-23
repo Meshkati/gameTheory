@@ -47,7 +47,7 @@ class HomeController extends Controller
     }
     public function showGame($game_id) {
         $type = '1';
-        if ($game_id == 3) {
+        if ($game_id == 2) {
             $type = '2';
         }
         return view('games.type' . $type, [
