@@ -21,10 +21,7 @@
                 <div class="game_container">
                     <h5>{{ $question }}</h5>
                     <div class="game_choices">
-                        <?php $i = 0 ?>
-                        @foreach($choices as $choice)
-                            <input type="radio" name="choice" value="{{ $i++ }}">{{ $choice }} </br>
-                        @endforeach
+                        <input type="number">
                     </div>
                     <button id ="submit_record" class="btn btn-primary" onclick="submitChoice({{ $game->id }}, {{\Illuminate\Support\Facades\Auth::id()}})">ثبت
                         <i id="button_icon" class="fa fa-circle-o-notch fa-spin"></i>
