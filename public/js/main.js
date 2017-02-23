@@ -7,6 +7,9 @@ function waitForMatch() {
         headers: {'X-CSRF-Token': csrfToken}
     });
     $.post('/games/' + game_id + '/checkRecordStatus/' + record_id, function (response) {
+        if(response.status == 'done') {
+            setGameStatus(response);
+        }
         if(response.status == 'match') {
             setGameStatus(response);
         } else {
@@ -17,37 +20,67 @@ function waitForMatch() {
 
 function setGameStatus(response) {
     console.log(response);
-    $('.game_container').css('display', 'none');
-    $('.game_response').css('display', 'block');
-    var stat = response.match.wl=='win'?'برنده':'بازنده';
-    var message = 'شما'+ ' ' + stat + ' ' + 'شدید';
-    $('#win_or_lose').text(message);
-    $('#user_name_field').text(response.opponent.name);
-    $('#enemy_chocie').text(response.match.enemy_choice);
+    if(response.status == 'done') {
+        $('.game_container').css('display', 'none');
+        $('.game_response').css('display', 'block');
+        var message = 'عدد منتخب ' + response.x + ' است' + '';
+        $('#win_or_lose').text(message);
+        $('#user_name_field').text('test');
+        $('#enemy_chocie').text(response.cx);
+    } else {
+
+        $('.game_container').css('display', 'none');
+        $('.game_response').css('display', 'block');
+        var stat = response.match.wl == 'win' ? 'برنده' : 'بازنده';
+        var message = 'شما' + ' ' + stat + ' ' + 'شدید';
+        $('#win_or_lose').text(message);
+        $('#user_name_field').text(response.opponent.name);
+        $('#enemy_chocie').text(response.match.enemy_choice);
+    }
 }
 
 function submitChoice(gameId, userId) {
     if (!clickable) {
         return;
     }
-    $.ajaxSetup({
-        headers: {'X-CSRF-Token': csrfToken}
-    });
-    $.post('/games/' + gameId + '/submit', {
-        user: userId,
-        choice: $('input[name=choice]:checked').val(),
-    }, function (response) {
-        console.log(response);
-        if (response.status == 'match') {
-            setGameStatus(response);
-        } else if (response.status == 'record') {
-            record_id = response.record.id;
-            game_id = gameId;
-            changeToPending();
-            clickable = false;
-            waitForMatch();
-        }
-    });
+    if (gameId == 2) {
+        $.ajaxSetup({
+            headers: {'X-CSRF-Token': csrfToken}
+        });
+        $.post('/games/' + gameId + '/submit', {
+            user: userId,
+            choice: $('#number_input').val(),
+        }, function (response) {
+            console.log(response);
+            if (response.status == 'match') {
+                setGameStatus(response);
+            } else if (response.status == 'record') {
+                record_id = response.record.id;
+                game_id = gameId;
+                changeToPending();
+                clickable = false;
+                waitForMatch();
+            }
+        });
+    } else if (gameId == 1) {
+        $.ajaxSetup({
+            headers: {'X-CSRF-Token': csrfToken}
+        });
+        $.post('/games/' + gameId + '/submit', {
+            user: userId,
+            choice: $('input[name=choice]:checked').val(),
+        }, function (response) {
+            console.log(response);
+            if (response.status == 'match') {
+                setGameStatus(response);
+            } else if (response.status == 'record') {
+                record_id = response.record.id;
+                changeToPending();
+                clickable = false;
+                waitForMatch();
+            }
+        });
+    }
 }
 
 function changeToPending() {

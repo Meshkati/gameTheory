@@ -21,7 +21,7 @@
                 <div class="game_container">
                     <h5>{{ $question }}</h5>
                     <div class="game_choices">
-                        <input type="number">
+                        <input type="number" id="number_input">
                     </div>
                     <button id ="submit_record" class="btn btn-primary" onclick="submitChoice({{ $game->id }}, {{\Illuminate\Support\Facades\Auth::id()}})">ثبت
                         <i id="button_icon" class="fa fa-circle-o-notch fa-spin"></i>
@@ -30,9 +30,9 @@
                 <div class="game_response" style="display: none">
                     <h5 id="win_or_lose"></h5>
                     <div style="margin-top: 50px">
-                        <span>شما با کاربر </span>
+                        <span>کاربر </span>
                         <span id="user_name_field" style="color: #2e6da4"></span>
-                        <span> بازی کردید و او گزینه </span>
+                        <span>قهرمان شد!</span>
                         <span id="enemy_chocie" style="color: #ff6666;"></span>
                         <span>را انتخاب کرد</span>
                     </div>
