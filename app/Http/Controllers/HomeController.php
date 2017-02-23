@@ -46,7 +46,11 @@ class HomeController extends Controller
         ]);
     }
     public function showGame($game_id) {
-        return view('games.type1', [
+        $type = '1';
+        if ($game_id == 3) {
+            $type = '2';
+        }
+        return view('games.type' . $type, [
             'game' => Game::find($game_id),
             'description' => $this->descriptions[$game_id],
             'question' => $this->questions[$game_id],
