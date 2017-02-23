@@ -1,5 +1,6 @@
 var record_id;
 var game_id;
+var clickable = true;
 
 function waitForMatch() {
     $.ajaxSetup({
@@ -26,6 +27,9 @@ function setGameStatus(response) {
 }
 
 function submitChoice(gameId, userId) {
+    if (!clickable) {
+        return;
+    }
     $.ajaxSetup({
         headers: {'X-CSRF-Token': csrfToken}
     });
@@ -40,6 +44,7 @@ function submitChoice(gameId, userId) {
             record_id = response.record.id;
             game_id = gameId;
             changeToPending();
+            clickable = false;
             waitForMatch();
         }
     });
