@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Record;
 use App\Game;
 use App\Match;
+use App\User;
 
 class MatchController extends Controller
 {
