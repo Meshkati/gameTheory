@@ -8,6 +8,7 @@
     <div class="container">
         <div class="row">
             @foreach($games as $game)
+                @if($game->id != 2)
                 <div class="col-xs-10 col-sm-10 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -18,6 +19,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
         </div>
     </div>
