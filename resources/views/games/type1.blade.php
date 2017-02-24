@@ -38,8 +38,42 @@
                         <span> بازی کردید و او گزینه </span>
                         <span id="enemy_chocie" style="color: #ff6666;"></span>
                         <span>را انتخاب کرد</span>
+                        <span>امتیاز شما</span>
+                        <span id="your_score" style="color: #ff6666;"></span>
+
+                        <br>
+                        <br>
                     </div>
                 </div>
+                <table class="table" style="text-align: center;">
+                    <thead>
+                    <tr>
+                        <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">#</th>
+                        <th class="col-xs-3 col-sm-3 col-md-3 col-lg-3">بازیکن ۱</th>
+                        <th class="col-xs-3 col-sm-3 col-md-2 col-lg-2">انتخاب</th>
+                        <th class="col-xs-3 col-sm-3 col-md-2 col-lg-2">بازیکن ۲</th>
+                        <th class="col-xs-3 col-sm-3 col-md-2 col-lg-2">انتخاب</th>
+                    </tr>
+                    </thead>
+                    <?php $i = 1 ?>
+                    <?php
+
+                    ?>
+                    @foreach(\Illuminate\Support\Facades\Auth::user()->records->where('game_id', $game->id) as $record)
+                        {{--                                @foreach($record->match->records as $rec)--}}
+                        <tr>
+                            <td>{{ $i }}</td>
+                            @if($record->match != null)
+                                <td>{{ $record->match()->first()->records()->get()[0]->user->name }}</td>
+                                <td>{{ $record->match()->first()->records()->get()[0]->score }}</td>
+                                <td>{{ $record->match()->first()->records()->get()[1]->user->name }}</td>
+                                <td>{{ $record->match()->first()->records()->get()[1]->score }}</td>
+                            @endif
+                        </tr>
+                        <?php $i++ ?>
+                        {{--@endforeach--}}
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>

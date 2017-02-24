@@ -10,6 +10,9 @@ use App\User;
 
 class MatchController extends Controller
 {
+    private function getRecordsTable($user, $game_id) {
+        return $user->records->where('game_id', $game_id);
+    }
     public function storeRecord(Request $request, $game_id){
         if($game_id != 2) {
             $matchInfo = '';
@@ -39,7 +42,8 @@ class MatchController extends Controller
                 $matchInfo = [
                     'enemy_choice' => $r2->score + 1,
                     'message' => 'haha',
-                    'wl' => $wl
+                    'wl' => $wl,
+                    'table' => $record->user->records->where('game_id', $game_id)
                 ];
             }
 
@@ -96,7 +100,8 @@ class MatchController extends Controller
                 'match' => [
                     'enemy_choice' => $r2->score,
                     'message' => 'hoohoo',
-                    'wl' => $wl
+                    'wl' => $wl,
+                    'table' => $r->user->records->where('game_id', $game_id)
                 ]
             ]);
         }
