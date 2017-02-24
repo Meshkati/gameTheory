@@ -33,16 +33,18 @@ function setGameStatus(response) {
         $('.game_response').css('display', 'block');
         var stat = response.match.wl == 'win' ? 'برنده' : 'بازنده';
         var message = 'شما' + ' ' + stat + ' ' + 'شدید';
-        $('#win_or_lose').text(message);
+        //$('#win_or_lose').text(message);
         $('#user_name_field').text(response.opponent.name);
         $('#enemy_chocie').text(response.match.enemy_choice);
     }
 }
 
 function submitChoice(gameId, userId) {
+    console.log('1');
     if (!clickable) {
         return;
     }
+    console.log('2');
     if (gameId == 2) {
         if ($('#number_input').val() > 100 || $('#number_input').val() < 0) {
             $('#submit_record').removeClass('btn-primary');
@@ -69,7 +71,7 @@ function submitChoice(gameId, userId) {
                 }
             });
         }
-    } else if (gameId == 1) {
+    } else {
         $.ajaxSetup({
             headers: {'X-CSRF-Token': csrfToken}
         });
@@ -82,6 +84,7 @@ function submitChoice(gameId, userId) {
                 setGameStatus(response);
             } else if (response.status == 'record') {
                 record_id = response.record.id;
+                game_id = gameId;
                 changeToPending();
                 clickable = false;
                 waitForMatch();

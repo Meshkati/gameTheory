@@ -11,7 +11,7 @@ use App\User;
 class MatchController extends Controller
 {
     public function storeRecord(Request $request, $game_id){
-        if($game_id == 1) {
+        if($game_id != 2) {
             $matchInfo = '';
             $opponent = '';
             $status = 'record'; // default
@@ -37,7 +37,7 @@ class MatchController extends Controller
                     $wl = 'lose';
                 }
                 $matchInfo = [
-                    'enemy_choice' => $r2->score,
+                    'enemy_choice' => $r2->score + 1,
                     'message' => 'haha',
                     'wl' => $wl
                 ];
