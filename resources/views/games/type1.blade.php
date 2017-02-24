@@ -38,8 +38,8 @@
                         <span> بازی کردید و او گزینه </span>
                         <span id="enemy_chocie" style="color: #ff6666;"></span>
                         <span>را انتخاب کرد</span>
-                        <span>امتیاز شما</span>
-                        <span id="your_score" style="color: #ff6666;"></span>
+                        {{--<span>امتیاز شما</span>--}}
+                        {{--<span id="your_score" style="color: #ff6666;"></span>--}}
 
                         <br>
                         <br>
