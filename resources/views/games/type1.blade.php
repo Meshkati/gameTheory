@@ -65,9 +65,9 @@
                             <td>{{ $i }}</td>
                             @if($record->match != null)
                                 <td>{{ $record->match()->first()->records()->get()[0]->user->name }}</td>
-                                <td>{{ $record->match()->first()->records()->get()[0]->score }}</td>
+                                <td>{{ $record->match()->first()->records()->get()[0]->score+1 }}</td>
                                 <td>{{ $record->match()->first()->records()->get()[1]->user->name }}</td>
-                                <td>{{ $record->match()->first()->records()->get()[1]->score }}</td>
+                                <td>{{ $record->match()->first()->records()->get()[1]->score+1 }}</td>
                             @endif
                         </tr>
                         <?php $i++ ?>
